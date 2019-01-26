@@ -36,7 +36,7 @@ public class MenuState extends State {
 
 		uiManager.addObjects(new UIImageButton(510, 224, 136, 28, Images.startButtons, new ClickListlener() {
 			@Override
-			public void onClick() {
+			public void onClick() { 
 				handler.getMouseManager().setUimanager(null);
 				handler.getGame().reStart();
 				yehFam = true;
@@ -60,7 +60,7 @@ public class MenuState extends State {
 			}
 		})); 
 		
-		uiManager.addObjects(new UIImageButton(545, 312, 72, 22, Images.exitButtons, new ClickListlener() {
+		uiManager.addObjects(new UIImageButton(545, 390, 72, 22, Images.exitButtons, new ClickListlener() {
 			@Override
 			public void onClick() {
 				handler.getMouseManager().setUimanager(null);
@@ -69,6 +69,13 @@ public class MenuState extends State {
 			}
 		}));
 		
+		uiManager.addObjects(new UIImageButton(500, 330, 164, 22, Images.controlsButtons, new ClickListlener() {
+			@Override
+			public void onClick() {
+				handler.getMouseManager().setUimanager(null);
+				State.setState(handler.getGame().introState);
+			}
+		}));
 	}
 
 	@Override

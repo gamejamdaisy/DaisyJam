@@ -106,6 +106,7 @@ public class Images {
 	
 	public static BufferedImage[] startButtons;
 	public static BufferedImage[] exitButtons;
+	public static BufferedImage[] controlsButtons;
 	public static BufferedImage pipe;
 
 
@@ -226,13 +227,14 @@ public class Images {
 		FireBallLeft = new BufferedImage[6];
 		FireBallRight = new BufferedImage[6];
 		FireBallUp = new BufferedImage[6];
-		FireBallDown = new BufferedImage[6];
+		FireBallDown = new BufferedImage[6]; 
 
 		questnumbers = new BufferedImage[5];
 		questbox = new BufferedImage[3];
 		
 		startButtons = new BufferedImage[3];
 		exitButtons = new BufferedImage[3];
+		controlsButtons = new BufferedImage[3];
 
 
 		try {
@@ -269,6 +271,10 @@ public class Images {
 			exitButtons[0]= menubuttonssheet.crop(1,88,72,22);
 			exitButtons[1]= menubuttonssheet.crop(1,111,72,22);
 			exitButtons[2]= menubuttonssheet.crop(1,134,72,22);
+			
+			controlsButtons[0]= menubuttonssheet.crop(1,157,164,22);
+			controlsButtons[1]= menubuttonssheet.crop(1,180,164,22);
+			controlsButtons[2]= menubuttonssheet.crop(1,203,164,22);
 			
 	        pipe = pipestuff.crop(1, 1, 134,80);
 
