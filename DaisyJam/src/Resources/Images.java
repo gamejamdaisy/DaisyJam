@@ -143,13 +143,17 @@ public class Images {
 		//Game Jam Added Sheets
 		SpriteSheet daisysheet = new SpriteSheet(Images.loadImage("/Sheets/Playable_Characters/DaisySheet.png"));
 		SpriteSheet menubuttonssheet = new SpriteSheet(Images.loadImage("/Buttons/MenuButtons.png"));
+
 		SpriteSheet pipestuff = new SpriteSheet(Images.loadImage("/Sheets/BluePipe.png"));
+        SpriteSheet islandsheet = new SpriteSheet(Images.loadImage("/Sheets/islandSheet.png"));
+		
+
 
 
 		blocks = new BufferedImage[256];
-
+  
 		//Changed values
-
+ 
 		player_left = new BufferedImage[8];
 		player_right = new BufferedImage[8];
 		player_front = new BufferedImage[8];
@@ -421,7 +425,49 @@ public class Images {
 			blocks[24] = bowsertiles.crop(66,1,Bwidth,Bheight);     //Bowser Walls
 			blocks[25] = bowsertiles.crop(131,1,Bwidth,Bheight);    //Luigi Block
 			blocks[26] = ImageIO.read(getClass().getResourceAsStream("/Sheets/bowserlogo.png"));   //Logo  floor
-
+			
+			//Island World
+			//Coastline
+			blocks[27] = islandsheet.crop(0, 0, Bwidth, Bheight);
+			blocks[28] = islandsheet.crop(64, 0, Bwidth, Bheight);
+			blocks[29] = islandsheet.crop(128, 0, Bwidth, Bheight);
+			blocks[30] = islandsheet.crop(128, 64, Bwidth, Bheight);
+			blocks[31] = islandsheet.crop(128, 128, Bwidth, Bheight);
+			blocks[32] = islandsheet.crop(64, 128, Bwidth, Bheight);
+			blocks[33] = islandsheet.crop(0, 128, Bwidth, Bheight);
+			blocks[34] = islandsheet.crop(0, 64, Bwidth, Bheight);
+			blocks[35] = islandsheet.crop(198, 0, Bwidth, Bheight);
+			blocks[36] = islandsheet.crop(256, 0, Bwidth, Bheight);
+			blocks[37] = islandsheet.crop(320, 0, Bwidth, Bheight);
+			blocks[38] = islandsheet.crop(320, 64, Bwidth, Bheight);
+			blocks[39] = islandsheet.crop(320, 128, Bwidth, Bheight);
+			blocks[40] = islandsheet.crop(256, 128, Bwidth, Bheight);
+			blocks[41] = islandsheet.crop(198, 128, Bwidth, Bheight);
+			blocks[42] = islandsheet.crop(198, 64, Bwidth, Bheight);
+			
+			//island ground
+			blocks[43] = islandsheet.crop(256, 256, Bwidth, Bheight);
+			blocks[44] = islandsheet.crop(384, 0, Bwidth, Bheight);
+			blocks[45] = islandsheet.crop(448, 0, Bwidth, Bheight);
+			blocks[46] = islandsheet.crop(384, 64, Bwidth, Bheight);
+			blocks[47] = islandsheet.crop(448, 64, Bwidth, Bheight);
+			blocks[48] = islandsheet.crop(384, 128, Bwidth, Bheight);
+			blocks[49] = islandsheet.crop(448, 128, Bwidth, Bheight);
+			blocks[50] = islandsheet.crop(0,  192, Bwidth, Bheight);
+			blocks[51] = islandsheet.crop(64, 192, Bwidth, Bheight);
+			blocks[52] = islandsheet.crop(128, 192, Bwidth, Bheight);
+			blocks[53] = islandsheet.crop(0, 256, Bwidth, Bheight);
+			blocks[54] = islandsheet.crop(64, 256, Bwidth, Bheight);
+			blocks[55] = islandsheet.crop(128, 256, Bwidth, Bheight);
+			blocks[56] = islandsheet.crop(0, 320, Bwidth, Bheight);
+			blocks[57] = islandsheet.crop(64, 320, Bwidth, Bheight);
+			blocks[58] = islandsheet.crop(128, 320, Bwidth, Bheight);
+			
+			//Water related
+			blocks[59] = islandsheet.crop(64, 64, Bwidth, Bheight); //water suface
+			blocks[60] = islandsheet.crop(512, 0, Bwidth, Bheight); //rock in water
+			
+					
 			//Fountain
 			fountain[0] = fountainsheet.crop(2,2,216,226);
 			fountain[1] = fountainsheet.crop(220,2,216,226);
