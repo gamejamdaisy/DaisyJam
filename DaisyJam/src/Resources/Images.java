@@ -103,7 +103,7 @@ public class Images {
 	public static BufferedImage[] fountain;
 	public static BufferedImage[] drystatue;
 	public static BufferedImage[] firepillar;
-	
+
 	public static BufferedImage[] startButtons;
 	public static BufferedImage[] exitButtons;
 	public static BufferedImage pipe;
@@ -139,21 +139,22 @@ public class Images {
 		SpriteSheet bowsersheet = new SpriteSheet(Images.loadImage("/Sheets/BowserSheet.png"));
 		SpriteSheet quest2sheet = new SpriteSheet(Images.loadImage("/Sheets/Quest2UI.png"));
 		SpriteSheet quest3sheet = new SpriteSheet(Images.loadImage("/Sheets/Quest3UI.png"));
-		
+
 		//Game Jam Added Sheets
 		SpriteSheet daisysheet = new SpriteSheet(Images.loadImage("/Sheets/Playable_Characters/DaisySheet.png"));
 		SpriteSheet menubuttonssheet = new SpriteSheet(Images.loadImage("/Buttons/MenuButtons.png"));
 
 		SpriteSheet pipestuff = new SpriteSheet(Images.loadImage("/Sheets/BluePipe.png"));
-        SpriteSheet islandsheet = new SpriteSheet(Images.loadImage("/Sheets/islandSheet.png"));
-		
+		SpriteSheet islandsheet = new SpriteSheet(Images.loadImage("/Sheets/islandSheet.png"));
+		SpriteSheet stairs = new SpriteSheet(Images.loadImage("/Sheets/stairs.png"));
+
 
 
 
 		blocks = new BufferedImage[256];
-  
+
 		//Changed values
- 
+
 		player_left = new BufferedImage[8];
 		player_right = new BufferedImage[8];
 		player_front = new BufferedImage[8];
@@ -230,7 +231,7 @@ public class Images {
 
 		questnumbers = new BufferedImage[5];
 		questbox = new BufferedImage[3];
-		
+
 		startButtons = new BufferedImage[3];
 		exitButtons = new BufferedImage[3];
 
@@ -260,8 +261,8 @@ public class Images {
 			GameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOverState.png"));
 			Victory = ImageIO.read(getClass().getResourceAsStream("/Sheets/VictoryState.png"));
 			IntroScreen = ImageIO.read(getClass().getResourceAsStream("/Sheets/IntroCutscene.png"));
-			
-			
+
+
 			startButtons[0]= menubuttonssheet.crop(1,1,136,28);
 			startButtons[1]= menubuttonssheet.crop(1,30,136,28);
 			startButtons[2]= menubuttonssheet.crop(1,59,136,28);
@@ -269,8 +270,8 @@ public class Images {
 			exitButtons[0]= menubuttonssheet.crop(1,88,72,22);
 			exitButtons[1]= menubuttonssheet.crop(1,111,72,22);
 			exitButtons[2]= menubuttonssheet.crop(1,134,72,22);
-			
-	        pipe = pipestuff.crop(1, 1, 134,80);
+
+			pipe = pipestuff.crop(1, 1, 134,80);
 
 			//icon
 			icon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/MushroomIcon.png")));
@@ -425,7 +426,7 @@ public class Images {
 			blocks[24] = bowsertiles.crop(66,1,Bwidth,Bheight);     //Bowser Walls
 			blocks[25] = bowsertiles.crop(131,1,Bwidth,Bheight);    //Luigi Block
 			blocks[26] = ImageIO.read(getClass().getResourceAsStream("/Sheets/bowserlogo.png"));   //Logo  floor
-			
+
 			//Island World
 			//Coastline
 			blocks[27] = islandsheet.crop(0, 0, Bwidth, Bheight);
@@ -436,17 +437,17 @@ public class Images {
 			blocks[32] = islandsheet.crop(64, 128, Bwidth, Bheight);
 			blocks[33] = islandsheet.crop(0, 128, Bwidth, Bheight);
 			blocks[34] = islandsheet.crop(0, 64, Bwidth, Bheight);
-			blocks[35] = islandsheet.crop(198, 0, Bwidth, Bheight);
+			blocks[35] = islandsheet.crop(192, 0, Bwidth, Bheight);
 			blocks[36] = islandsheet.crop(256, 0, Bwidth, Bheight);
 			blocks[37] = islandsheet.crop(320, 0, Bwidth, Bheight);
 			blocks[38] = islandsheet.crop(320, 64, Bwidth, Bheight);
 			blocks[39] = islandsheet.crop(320, 128, Bwidth, Bheight);
 			blocks[40] = islandsheet.crop(256, 128, Bwidth, Bheight);
-			blocks[41] = islandsheet.crop(198, 128, Bwidth, Bheight);
-			blocks[42] = islandsheet.crop(198, 64, Bwidth, Bheight);
-			
+			blocks[41] = islandsheet.crop(192, 128, Bwidth, Bheight);
+			blocks[42] = islandsheet.crop(192, 64, Bwidth, Bheight);
+
 			//island ground
-			blocks[43] = islandsheet.crop(256, 256, Bwidth, Bheight);
+			blocks[43] = islandsheet.crop(448, 0, Bwidth, Bheight);
 			blocks[44] = islandsheet.crop(384, 0, Bwidth, Bheight);
 			blocks[45] = islandsheet.crop(448, 0, Bwidth, Bheight);
 			blocks[46] = islandsheet.crop(384, 64, Bwidth, Bheight);
@@ -462,12 +463,16 @@ public class Images {
 			blocks[56] = islandsheet.crop(0, 320, Bwidth, Bheight);
 			blocks[57] = islandsheet.crop(64, 320, Bwidth, Bheight);
 			blocks[58] = islandsheet.crop(128, 320, Bwidth, Bheight);
-			
+
 			//Water related
-			blocks[59] = islandsheet.crop(64, 64, Bwidth, Bheight); //water suface
+			blocks[59] = islandsheet.crop(64, 64, Bwidth, Bheight); //water surface
 			blocks[60] = islandsheet.crop(512, 0, Bwidth, Bheight); //rock in water
-			
-					
+
+			//Stairs
+			blocks[61] = stairs.crop(0, 0, Bwidth, Bheight);
+			blocks[62] = stairs.crop(64, 0, Bwidth, Bheight);
+
+
 			//Fountain
 			fountain[0] = fountainsheet.crop(2,2,216,226);
 			fountain[1] = fountainsheet.crop(220,2,216,226);
@@ -646,7 +651,7 @@ public class Images {
 			bowser_front[13]=bowsersheet.crop(1822,2,138,138);
 			bowser_front[14]=bowsersheet.crop(1962,2,138,138);
 			bowser_front[15]=bowsersheet.crop(2102,2,138,138);
-			
+
 			bowser_left[0]=bowsersheet.crop(2,142,138,138);
 			bowser_left[1]=bowsersheet.crop(142,142,138,138);
 			bowser_left[2]=bowsersheet.crop(282,142,138,138);
@@ -663,7 +668,7 @@ public class Images {
 			bowser_left[13]=bowsersheet.crop(1822,142,138,138);
 			bowser_left[14]=bowsersheet.crop(1962,142,138,138);
 			bowser_left[15]=bowsersheet.crop(2102,142,138,138);
-			
+
 			bowser_right[0]=bowsersheet.crop(2,282,138,138);
 			bowser_right[1]=bowsersheet.crop(142,282,138,138);
 			bowser_right[2]=bowsersheet.crop(282,282,138,138);
@@ -680,7 +685,7 @@ public class Images {
 			bowser_right[13]=bowsersheet.crop(1822,282,138,138);
 			bowser_right[14]=bowsersheet.crop(1962,282,138,138);
 			bowser_right[15]=bowsersheet.crop(2102,282,138,138);
-			
+
 			bowser_back[0]=bowsersheet.crop(2,422,138,138);
 			bowser_back[1]=bowsersheet.crop(142,422,138,138);
 			bowser_back[2]=bowsersheet.crop(282,422,138,138);
@@ -697,7 +702,7 @@ public class Images {
 			bowser_back[13]=bowsersheet.crop(1822,422,138,138);
 			bowser_back[14]=bowsersheet.crop(1962,422,138,138);
 			bowser_back[15]=bowsersheet.crop(2102,422,138,138);
-			
+
 			//Dry Bones
 			drybones_front[0]=drybonessheet.crop(2,2,46,74);
 			drybones_front[1]=drybonessheet.crop(50,2,46,74);
@@ -746,7 +751,7 @@ public class Images {
 
 			//Yoshi
 			yoshi[0]=npcsheet.crop(2,98,50,84);
-			
+
 			toad[0]=npcsheet.crop(2,184,36,54);
 
 			//Luigi
