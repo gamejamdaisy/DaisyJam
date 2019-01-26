@@ -15,6 +15,7 @@ import Display.DisplayScreen;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -35,7 +36,7 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
-    //States
+    //States 
     public State gameState;
     public State menuState;
     public State pauseState;
@@ -54,11 +55,16 @@ public class Game implements Runnable {
     private Handler handler;
 
     //Res.music
-    private File audioFile;
+    private File MenuMusicFile;
+    private File MushroomMusicFile;
+    private File BeachMusicFile;
     private AudioInputStream audioStream;
     private AudioFormat format;
     private DataLine.Info info;
-    private Clip audioClip;
+    private Clip MenuClip;
+    private Clip MushroomClip;
+    private Clip BeachClip;
+
 
     private BufferedImage loading;
 
@@ -100,13 +106,13 @@ public class Game implements Runnable {
         State.setState(menuState);
 
         try {
-            audioFile = new File("res/music/PeachMusic.wav");
-            audioStream = AudioSystem.getAudioInputStream(audioFile);
+        	MenuMusicFile = new File("res/music/MenuMusic.wav");
+            audioStream = AudioSystem.getAudioInputStream(MenuMusicFile);
             format = audioStream.getFormat();
             info = new DataLine.Info(Clip.class, format);
-            audioClip = (Clip) AudioSystem.getLine(info);
-            audioClip.open(audioStream);
-            audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+            MenuClip = (Clip) AudioSystem.getLine(info);
+            MenuClip.open(audioStream);
+            MenuClip.loop(Clip.LOOP_CONTINUOUSLY);
 
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
@@ -115,6 +121,41 @@ public class Game implements Runnable {
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
+        
+        try {
+        	MushroomMusicFile = new File("res/music/PeachMusic.wav");
+            audioStream = AudioSystem.getAudioInputStream(MushroomMusicFile);
+            format = audioStream.getFormat();
+            info = new DataLine.Info(Clip.class, format);
+            MushroomClip = (Clip) AudioSystem.getLine(info);
+            MushroomClip.open(audioStream);
+
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+        	BeachMusicFile = new File("res/music/EastonMusic.wav");
+            audioStream = AudioSystem.getAudioInputStream(BeachMusicFile);
+            format = audioStream.getFormat();
+            info = new DataLine.Info(Clip.class, format);
+            BeachClip = (Clip) AudioSystem.getLine(info);
+            BeachClip.open(audioStream);
+
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+        
     }
 
     public void reStart(){
@@ -175,6 +216,19 @@ public class Game implements Runnable {
         //game states are the menus
         if(State.getState() != null)
             State.getState().tick();
+        
+        if (menuState.yehFam) {
+        	MenuClip.stop();
+        	MushroomClip.start();
+        	MushroomClip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
+        
+        if (handler.getWorld().getEntityManager().getPlayer().getCurrentWorld() == 2) {
+        	menuState.yehFam = false;
+        	MushroomClip.stop();
+        	BeachClip.start();
+        	BeachClip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
     }
 
     private void render(){

@@ -27,7 +27,7 @@ public class VictoryState extends State {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().menuState);
         }));
-	}
+	} 
 
     @Override
     public void tick() {

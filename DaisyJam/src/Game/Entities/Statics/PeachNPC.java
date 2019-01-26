@@ -35,7 +35,7 @@ public class PeachNPC extends StaticEntity {
         bounds.y=0;
         bounds.width = 100;
         bounds.height = 64;
-
+ 
         ir.width = bounds.width;
         ir.height = bounds.height;
         int irx=(int)(bounds.x-handler.getGameCamera().getxOffset()+x);

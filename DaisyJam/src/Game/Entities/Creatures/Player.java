@@ -10,6 +10,7 @@ import Resources.Images;
 import Worlds.CaveWorld;
 import Worlds.World1;
 import Worlds.World3;
+import Main.Game;
 import Main.Handler;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -44,11 +45,15 @@ public class Player extends CreatureBase {
 	private AudioFormat format;
 	private DataLine.Info info;
 	private Clip audioClip;
-
+ 
 	private Boolean attacking=false;
+	
+	public int World1 = 1;
+	public int Cave = 2;
+	public int World3 = 3;
 
 	private int animWalkingSpeed = 50;
-	private int animFireSpeed = 250;
+	private int animFireSpeed = 250; 
 	private int movexp,moveyp,movexn,moveyn,tempmoveyp,tempmovexn,tempmoveyn,tempmovexp,fy,fx;
 
 	public Player(Handler handler, float x, float y) {
@@ -187,7 +192,39 @@ public class Player extends CreatureBase {
 
 
 	//World Debug variable
-	int currentWorld = 1;
+	public int currentWorld = 1;
+
+	public int getCurrentWorld() {
+		return currentWorld;
+	}
+
+	public int getWorld1() {
+		return World1;
+	}
+
+	public void setWorld1(int world1) {
+		World1 = world1;
+	}
+
+	public int getCave() {
+		return Cave;
+	}
+
+	public void setCave(int cave) {
+		Cave = cave;
+	}
+
+	public int getWorld3() {
+		return World3;
+	}
+
+	public void setWorld3(int world3) {
+		World3 = world3;
+	}
+
+	public void setCurrentWorld(int currentWorld) {
+		this.currentWorld = currentWorld;
+	}
 
 	private void getInput(){
 		xMove = 0;
@@ -202,10 +239,6 @@ public class Player extends CreatureBase {
 		if(handler.getKeyManager().right&&! attacking)
 			xMove = speed;
 
-		//Skip World Debug
-		int World1 = 1;
-		int Cave = 2;
-		int World3 = 3;
 
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_TAB))
 		{

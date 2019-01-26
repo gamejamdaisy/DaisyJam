@@ -27,7 +27,7 @@ public class UIManager {
 
     public void Render(Graphics g){
         for(UIObject o: objects){
-            o.render(g);
+            o.render(g); 
         }
     }
 

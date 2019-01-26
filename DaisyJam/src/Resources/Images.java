@@ -101,6 +101,9 @@ public class Images {
 	public static BufferedImage[] fountain;
 	public static BufferedImage[] drystatue;
 	public static BufferedImage[] firepillar;
+	
+	public static BufferedImage[] startButtons;
+	public static BufferedImage[] exitButtons;
 
 
 	public Images() {
@@ -120,7 +123,7 @@ public class Images {
 		SpriteSheet inventorysheet = new SpriteSheet(Images.loadImage("/Sheets/InventoryItems.png"));
 		SpriteSheet fountainsheet = new SpriteSheet(Images.loadImage("/Sheets/FountainSheet.png"));
 		SpriteSheet statuesheet = new SpriteSheet(Images.loadImage("/Sheets/StatueSheet.png"));
-		SpriteSheet npcsheet = new SpriteSheet(Images.loadImage("/Sheets/NPCSheet.png"));
+		SpriteSheet npcsheet = new SpriteSheet(Images.loadImage("/Sheets/NPCSheet.png")); 
 		SpriteSheet koopasheet = new SpriteSheet(Images.loadImage("/Sheets/KoopaSheet.png"));
 		SpriteSheet deserttiles = new SpriteSheet(Images.loadImage("/Sheets/DesertTiles.png"));
 		SpriteSheet drybonesstatue = new SpriteSheet(Images.loadImage("/Sheets/DryBonesStatue.png"));
@@ -136,6 +139,8 @@ public class Images {
 		
 		//Game Jam Added Sheets
 		SpriteSheet daisysheet = new SpriteSheet(Images.loadImage("/Sheets/Playable_Characters/DaisySheet.png"));
+		SpriteSheet menubuttonssheet = new SpriteSheet(Images.loadImage("/Buttons/MenuButtons.png"));
+		
 
 
 		blocks = new BufferedImage[256];
@@ -218,6 +223,9 @@ public class Images {
 
 		questnumbers = new BufferedImage[5];
 		questbox = new BufferedImage[3];
+		
+		startButtons = new BufferedImage[3];
+		exitButtons = new BufferedImage[3];
 
 
 		try {
@@ -226,7 +234,7 @@ public class Images {
 			spellGUI = ImageIO.read(getClass().getResourceAsStream("/Sheets/SpellGUI.png"));
 
 			inventory = ImageIO.read(getClass().getResourceAsStream("/Sheets/guit.png"));
-			title = ImageIO.read(getClass().getResourceAsStream("/Sheets/MenuState.png"));
+			title = ImageIO.read(getClass().getResourceAsStream("/Sheets/MenuScreen.jpg"));
 
 			//New Door
 			door = peachtiles.crop(2,216,80,84);
@@ -243,7 +251,15 @@ public class Images {
 
 			GameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOverState.png"));
 			Victory = ImageIO.read(getClass().getResourceAsStream("/Sheets/VictoryState.png"));
+			
+			
+			startButtons[0]= menubuttonssheet.crop(1,1,136,28);
+			startButtons[1]= menubuttonssheet.crop(1,30,136,28);
+			startButtons[2]= menubuttonssheet.crop(1,59,136,28);
 
+			exitButtons[0]= menubuttonssheet.crop(1,88,72,22);
+			exitButtons[1]= menubuttonssheet.crop(1,111,72,22);
+			exitButtons[2]= menubuttonssheet.crop(1,134,72,22);
 
 			//icon
 			icon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/MushroomIcon.png")));

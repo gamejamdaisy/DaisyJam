@@ -12,6 +12,7 @@ public abstract class UIObject {
     protected float x,y;
     protected Rectangle bounds;
     protected boolean hovering = false;
+    protected boolean nothovering = true;
     protected boolean active=false;
 
 
@@ -24,7 +25,7 @@ public abstract class UIObject {
 
     }
 
-    public abstract void tick();
+    public abstract void tick(); 
     public abstract void render(Graphics g);
     public abstract void onClick();
 
@@ -37,8 +38,8 @@ public abstract class UIObject {
 
     public void onMouseMove(MouseEvent e){
         if(bounds.contains(e.getX(),e.getY())){
-            hovering=true;
-        }else hovering=false;
+            hovering=true; nothovering = false;
+        }else hovering=false; nothovering = true;
 
     }
     public void onMouseRelease(MouseEvent e){
