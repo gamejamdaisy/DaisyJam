@@ -4,7 +4,7 @@ import Game.Entities.EntityBase;
 import Game.GameStates.State;
 import Game.Inventories.Inventory;
 import Game.Items.Item;
-import Game.SpellCast.SpellCastUI;
+
 import Resources.Animation;
 import Resources.Images;
 import Worlds.CaveWorld;
@@ -25,14 +25,10 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-/**
- * Created by Elemental on 1/1/2017.
- */
-
 public class Player extends CreatureBase {
 
 	//Animations
-	private Animation animDown, animUp, animLeft, animRight,animFireATT,animFireATTR,animFireATTU,animFireATTD, idleDown, idleUp, idleLeft, idleRight;
+	private Animation animDown, animUp, animLeft, animRight;
 
 	// Attack
 
@@ -43,38 +39,20 @@ public class Player extends CreatureBase {
 	//Debug variable for adding items.
 	boolean NoItems = true;
 
-	private SpellCastUI spellGUI;
-	
-	  private File audioFile;
-	    private AudioInputStream audioStream;
-	    private AudioFormat format;
-	    private DataLine.Info info;
-	    private Clip audioClip;
+	private File audioFile;
+	private AudioInputStream audioStream;
+	private AudioFormat format;
+	private DataLine.Info info;
+	private Clip audioClip;
 
-
-	private int fcounter = 0;
-	private Boolean fcactive=true;
-	private Boolean FireBall=false;
-	private Boolean LaunchedFireBall=false;
-	private Boolean LaunchedFireBallL=false;
-	private Boolean LaunchedFireBallR=false;
-	private Boolean LaunchedFireBallU=false;
-	private Boolean LaunchedFireBallD=false;
 	private Boolean attacking=false;
-	public static boolean luigisummon = false;
 
 	private int animWalkingSpeed = 50;
 	private int animFireSpeed = 250;
-	private int FireSpeed = 2;
-	private int FireMove = 0;
 	private int movexp,moveyp,movexn,moveyn,tempmoveyp,tempmovexn,tempmoveyn,tempmovexp,fy,fx;
 
-	//spells
-
-
-
 	public Player(Handler handler, float x, float y) {
-		super(handler, x, y, 74, 56);
+		super(handler, x, y, 94, 48);
 
 		bounds.x=10;
 		bounds.y=37;
@@ -83,27 +61,13 @@ public class Player extends CreatureBase {
 		health=75;
 		this.attack=5;
 		this.speed = this.speed*(float)1.5;
-		
-
 
 		animDown = new Animation(animWalkingSpeed,Images.player_front);
 		animLeft = new Animation(animWalkingSpeed,Images.player_left);
 		animRight = new Animation(animWalkingSpeed,Images.player_right);
 		animUp = new Animation(animWalkingSpeed,Images.player_back);
-
-		animFireATT = new Animation(animFireSpeed,Images.FireBallLeft);
-		animFireATTR = new Animation(animFireSpeed,Images.FireBallRight);
-		animFireATTU = new Animation(animFireSpeed,Images.FireBallUp);
-		animFireATTD = new Animation(animFireSpeed,Images.FireBallDown);
-
-		//Idle Animations
-		idleDown = new Animation(animWalkingSpeed,Images.marioidle_front);
-		idleLeft = new Animation(animWalkingSpeed,Images.marioidle_left);
-		idleRight = new Animation(animWalkingSpeed,Images.marioidle_right);
-		idleUp = new Animation(animWalkingSpeed,Images.marioidle_back);
-
+		
 		inventory= new Inventory(handler);
-		spellGUI= new SpellCastUI(handler);
 	}
 
 	@Override
@@ -113,69 +77,24 @@ public class Player extends CreatureBase {
 		animUp.tick();
 		animRight.tick();
 		animLeft.tick();
-		animFireATT.tick();
-		animFireATTR.tick();
-		animFireATTU.tick();
-		animFireATTD.tick();
-
-		idleDown.tick();
-		idleUp.tick();
-		idleRight.tick();
-		idleLeft.tick();
-
 
 		//Movement
 		getInput();
 		move();
 		handler.getGameCamera().centerOnEntity(this);
 
-		if(!fcactive){
-			fcounter++;
-		}
-		if(fcounter>=60){
-			fcounter=0;
-			fcactive=true;
-			FireBall=true;
-
-		}
-
-		if(FireBall){
-			FireMove++;
-		}
-
-
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_C)){
-			readyFireAttack();
-		}
-
 		// Attack
 		if(handler.getKeyManager().attbut) {
 			checkAttacks();
-		}else if(handler.getKeyManager().fattbut){
-
-			fireAttack();
-
 		}
-
-
+		
 		//Inventory
 		inventory.tick();
-
-		//spellgui
-		spellGUI.tick();
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(getCurrentAnimationFrameIdle(idleDown,idleUp,idleLeft,idleRight, animDown, animUp, animLeft, animRight, Images.marioidle_front,Images.marioidle_back,Images.marioidle_left,Images.marioidle_right), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-
-		if(FireBall){
-			FireBallAttack(g);
-
-		}
-
-
-
+		g.drawImage(getCurrentAnimationFrame(animDown, animUp, animLeft, animRight, Images.player_front,Images.player_back,Images.player_left,Images.player_right), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 
 		g.setColor(Color.BLACK);
 		g.drawRect((int)(x-handler.getGameCamera().getxOffset()-1),(int)(y-handler.getGameCamera().getyOffset()-21),76,11);
@@ -199,36 +118,6 @@ public class Player extends CreatureBase {
 
 	}
 
-	public void readyFireAttack(){
-		LaunchedFireBall=true;
-		movexp =(int) (x - handler.getGameCamera().getxOffset()) + 48;
-		moveyp =(int) (y - handler.getGameCamera().getyOffset()) + 64;
-		movexn =(int) (x - handler.getGameCamera().getxOffset()) - 48;
-		moveyn =(int) (y - handler.getGameCamera().getyOffset()) - 64;
-		tempmovexp =(int) (x - handler.getGameCamera().getxOffset()) + 48;
-		tempmoveyp =(int) (y - handler.getGameCamera().getyOffset()) + 64;
-		tempmovexn =(int) (x - handler.getGameCamera().getxOffset()) - 48;
-		tempmoveyn =(int) (y - handler.getGameCamera().getyOffset()) - 64;
-		LaunchedFireBallL=false;
-		LaunchedFireBallR=false;
-		LaunchedFireBallU=false;
-		LaunchedFireBallD=false;
-		fy=(int) (y - handler.getGameCamera().getyOffset()) + (height / 2);
-		fx=(int) (x - handler.getGameCamera().getxOffset()) + 16;
-	}
-	public void fireAttack() {
-
-		for (Item i : getInventory().getInventoryItems()) {
-			if (i.getName() == "Fire Rune"&&fcactive) {
-				attacking=true;
-				System.out.println("Burn");
-				i.setCount(i.getCount() - 1);
-				fcactive=false;
-				return;
-
-			}
-		}
-	}
 
 	@SuppressWarnings("Duplicates")
 	@Override
@@ -278,28 +167,28 @@ public class Player extends CreatureBase {
 	public void die(){
 		System.out.println("You lose");
 		State.setState(handler.getGame().gameOverState);
-		 try {
-             audioFile = new File("res/music/mario-oof.wav");
-             audioStream = AudioSystem.getAudioInputStream(audioFile);
-             format = audioStream.getFormat();
-             info = new DataLine.Info(Clip.class, format);
-             audioClip = (Clip) AudioSystem.getLine(info);
-	            audioClip.open(audioStream);
-	            audioClip.loop(0);
+		try {
+			audioFile = new File("res/music/mario-oof.wav");
+			audioStream = AudioSystem.getAudioInputStream(audioFile);
+			format = audioStream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			audioClip = (Clip) AudioSystem.getLine(info);
+			audioClip.open(audioStream);
+			audioClip.loop(0);
 
-         } catch (UnsupportedAudioFileException e) {
-             e.printStackTrace();
-         } catch (IOException e) {
-             e.printStackTrace();
-         } catch (LineUnavailableException e) {
-             e.printStackTrace();
-         }
-     }
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 	//World Debug variable
-    int currentWorld = 1;
-	
+	int currentWorld = 1;
+
 	private void getInput(){
 		xMove = 0;
 		yMove = 0;
@@ -313,41 +202,41 @@ public class Player extends CreatureBase {
 		if(handler.getKeyManager().right&&! attacking)
 			xMove = speed;
 
-        //Skip World Debug
-        int World1 = 1;
-        int Cave = 2;
-        int World3 = 3;
+		//Skip World Debug
+		int World1 = 1;
+		int Cave = 2;
+		int World3 = 3;
 
-        if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_TAB))
-        {
-        	if (currentWorld == World1)
-        	{
-        		currentWorld = Cave;
-        		handler.setWorld(new CaveWorld(this.handler, "res/Maps/caveMap.map", this));
-        	}
-        	else if (currentWorld == Cave)
-        	{
-        		currentWorld = World3;
-        		handler.setWorld(new World3(this.handler, "res/Maps/map3.map", this));
-        	}
-        	else if (currentWorld == World3)
-        	{
-        		//Last World added
-        		currentWorld = World1; //Loop back
-        		handler.setWorld(new World1(this.handler, "res/Maps/map1.map", this));
-        	}
-        }
+		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_TAB))
+		{
+			if (currentWorld == World1)
+			{
+				currentWorld = Cave;
+				handler.setWorld(new CaveWorld(this.handler, "res/Maps/caveMap.map", this));
+			}
+			else if (currentWorld == Cave)
+			{
+				currentWorld = World3;
+				handler.setWorld(new World3(this.handler, "res/Maps/map3.map", this));
+			}
+			else if (currentWorld == World3)
+			{
+				//Last World added
+				currentWorld = World1; //Loop back
+				handler.setWorld(new World1(this.handler, "res/Maps/map1.map", this));
+			}
+		}
 
 		//Regain Health Debug
 		if (handler.getKeyManager().regenhealth) {
 			if (health < 75) {
 				health++;
-				
+
 			}
 		}
 
 		//Uses the 1-Up (+health) item
-		
+
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_H)) {
 			for (Item e : getInventory().getInventoryItems()) {
 				if (e.getName().equals("1-Up")) {
@@ -362,7 +251,7 @@ public class Player extends CreatureBase {
 				}
 			}
 		}
-		
+
 		//Uses the Super Mushroom (+attack) item		
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_J)) {
 			for (Item m: getInventory().getInventoryItems()) {
@@ -371,20 +260,9 @@ public class Player extends CreatureBase {
 					m.setCount(m.getCount() - 1);
 				}
 			}
-			
+
 		}
-		
-		//Summons Luigi
-		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_G)) {
-			for (Item l: getInventory().getInventoryItems()) {
-				if (l.getName().equals("Luigi Cap")) {
-					luigisummon = true;
-					l.setCount(l.getCount() - 1);
-				}
-			}
-			
-		}
-		
+
 		//Add one of each item Debug
 
 
@@ -415,103 +293,12 @@ public class Player extends CreatureBase {
 					if (i.getCount() == 0)
 					{
 						NoItems = true;
-						
-						
+
+
 					}
 				}
 			}
 		}
-
-	}
-
-
-	private void FireBallAttack(Graphics g) {
-
-
-		if (lr&&LaunchedFireBall&&!LaunchedFireBallL&&!LaunchedFireBallR&&!LaunchedFireBallD&&!LaunchedFireBallU) {
-			LaunchedFireBall=false;
-			LaunchedFireBallL=false;
-			LaunchedFireBallR=true;
-			LaunchedFireBallU=false;
-			LaunchedFireBallD=false;
-
-		} else if (ld&&LaunchedFireBall&&!LaunchedFireBallL&&!LaunchedFireBallR&&!LaunchedFireBallD&&!LaunchedFireBallU) {
-			LaunchedFireBall=false;
-			LaunchedFireBallL=false;
-			LaunchedFireBallR=false;
-			LaunchedFireBallU=false;
-			LaunchedFireBallD=true;
-
-		} else if (lu&&LaunchedFireBall&&!LaunchedFireBallL&&!LaunchedFireBallR&&!LaunchedFireBallD&&!LaunchedFireBallU) {
-			LaunchedFireBall=false;
-			LaunchedFireBallL=false;
-			LaunchedFireBallR=false;
-			LaunchedFireBallU=true;
-			LaunchedFireBallD=false;
-
-		} else if(ll&&LaunchedFireBall&&!LaunchedFireBallL&&!LaunchedFireBallR&&!LaunchedFireBallD&&!LaunchedFireBallU) {
-			LaunchedFireBall=false;
-			LaunchedFireBallL=true;
-			LaunchedFireBallR=false;
-			LaunchedFireBallU=false;
-			LaunchedFireBallD=false;
-
-		}
-		if (LaunchedFireBallR) {
-			movexp+=FireSpeed;
-			g.drawImage(getCurrentFireAnimationFrame(), movexp, fy, 64, 32, null);
-			if(movexp >= tempmovexp + 64*2){
-				FireBall=false;
-				attacking=false;
-			}
-		} else if (LaunchedFireBallD) {
-			moveyp+=FireSpeed;
-			g.drawImage(getCurrentFireAnimationFrame(), fx-6, moveyp, 32, 64, null);
-			if(moveyp >= tempmoveyp + 64*2){
-				FireBall=false;
-				attacking=false;
-			}
-		} else if (LaunchedFireBallU) {
-			moveyn-=FireSpeed;
-			g.drawImage(getCurrentFireAnimationFrame(), fx, moveyn, 32, 64, null);
-			if(moveyn <= tempmoveyn - 64*2){
-				FireBall=false;
-				attacking=false;
-			}
-		} else if(LaunchedFireBallL) {   //ll
-			movexn-=FireSpeed;
-			g.drawImage(getCurrentFireAnimationFrame(), movexn, fy, 64, 32, null);
-			if(movexn <= tempmovexn - 64*2){
-				FireBall=false;
-				attacking=false;
-			}
-		}
-
-
-
-
-
-	}
-
-	private BufferedImage getCurrentFireAnimationFrame(){
-
-		if(LaunchedFireBallR){
-
-			return animFireATTR.getCurrentFrame();
-
-		}else if(LaunchedFireBallD){
-
-			return animFireATTD.getCurrentFrame();
-
-		}else if(LaunchedFireBallU){
-
-			return animFireATTU.getCurrentFrame();
-
-		}else{   //ll
-
-			return animFireATT.getCurrentFrame();
-		}
-
 
 	}
 
@@ -521,9 +308,5 @@ public class Player extends CreatureBase {
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
-	}
-
-	public SpellCastUI getSpellGUI() {
-		return spellGUI;
 	}
 }

@@ -73,7 +73,7 @@ public class BaseWorld {
         entityManager.render(g);
 
         entityManager.getPlayer().getInventory().render(g);
-        entityManager.getPlayer().getSpellGUI().render(g);
+
 
     }
 

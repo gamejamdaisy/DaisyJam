@@ -5,13 +5,8 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-/**
- * Created by Elemental on 12/19/2016.
- */
 public class Images {
-
-	//Change default w/h to fit Mario
-	private static final int width = 56, height = 74;    //Mario W/H
+	private static final int width = 48, height = 94;    //Daisy W/H
 
 	private static final int iwidth = 32, iheight = 32;  //Item W/H
 
@@ -21,7 +16,7 @@ public class Images {
 
 	public static BufferedImage[] blocks;
 
-	//Mario Moving
+	//Daisy Moving
 	public static BufferedImage[] player_right;
 	public static BufferedImage[] player_left;
 	public static BufferedImage[] player_front;
@@ -138,6 +133,9 @@ public class Images {
 		SpriteSheet bowsersheet = new SpriteSheet(Images.loadImage("/Sheets/BowserSheet.png"));
 		SpriteSheet quest2sheet = new SpriteSheet(Images.loadImage("/Sheets/Quest2UI.png"));
 		SpriteSheet quest3sheet = new SpriteSheet(Images.loadImage("/Sheets/Quest3UI.png"));
+		
+		//Game Jam Added Sheets
+		SpriteSheet daisysheet = new SpriteSheet(Images.loadImage("/Sheets/Playable_Characters/DaisySheet.png"));
 
 
 		blocks = new BufferedImage[256];
@@ -423,41 +421,41 @@ public class Images {
 			firepillar[5] = firepillarsheet.crop(632,2,124,370);
 
 			//Mario Animations
-			player_front[0]=mariorun.crop(2,2,width,height);
-			player_front[1]=mariorun.crop(60,2,width,height);
-			player_front[2]=mariorun.crop(118,2,width,height);
-			player_front[3]=mariorun.crop(176,2,width,height);
-			player_front[4]=mariorun.crop(234,2,width,height);
-			player_front[5]=mariorun.crop(292,2,width,height);
-			player_front[6]=mariorun.crop(350,2,width,height);
-			player_front[7]=mariorun.crop(408,2,width,height);
+			player_front[0]=daisysheet.crop(2,2,width,height);
+			player_front[1]=daisysheet.crop(52,2,width,height);
+			player_front[2]=daisysheet.crop(102,2,width,height);
+			player_front[3]=daisysheet.crop(152,2,width,height);
+			player_front[4]=daisysheet.crop(202,2,width,height);
+			player_front[5]=daisysheet.crop(252,2,width,height);
+			player_front[6]=daisysheet.crop(302,2,width,height);
+			player_front[7]=daisysheet.crop(352,2,width,height);
 
-			player_left[0]=mariorun.crop(2,78,width,height);
-			player_left[1]=mariorun.crop(60,78,width,height);
-			player_left[2]=mariorun.crop(118,78,width,height);
-			player_left[3]=mariorun.crop(176,78,width,height);
-			player_left[4]=mariorun.crop(234,78,width,height);
-			player_left[5]=mariorun.crop(292,78,width,height);
-			player_left[6]=mariorun.crop(350,78,width,height);
-			player_left[7]=mariorun.crop(408,78,width,height);
+			player_left[0]=daisysheet.crop(2,98,width,height);
+			player_left[1]=daisysheet.crop(52,98,width,height);
+			player_left[2]=daisysheet.crop(102,98,width,height);
+			player_left[3]=daisysheet.crop(152,98,width,height);
+			player_left[4]=daisysheet.crop(202,98,width,height);
+			player_left[5]=daisysheet.crop(252,98,width,height);
+			player_left[6]=daisysheet.crop(302,98,width,height);
+			player_left[7]=daisysheet.crop(352,98,width,height);
 
-			player_right[0]=mariorun.crop(2,154,width,height);
-			player_right[1]=mariorun.crop(60,154,width,height);
-			player_right[2]=mariorun.crop(118,154,width,height);
-			player_right[3]=mariorun.crop(176,154,width,height);
-			player_right[4]=mariorun.crop(234,154,width,height);
-			player_right[5]=mariorun.crop(292,154,width,height);
-			player_right[6]=mariorun.crop(350,154,width,height);
-			player_right[7]=mariorun.crop(408,154,width,height);
+			player_right[0]=daisysheet.crop(2,194,width,height);
+			player_right[1]=daisysheet.crop(52,194,width,height);
+			player_right[2]=daisysheet.crop(102,194,width,height);
+			player_right[3]=daisysheet.crop(152,194,width,height);
+			player_right[4]=daisysheet.crop(202,194,width,height);
+			player_right[5]=daisysheet.crop(252,194,width,height);
+			player_right[6]=daisysheet.crop(302,194,width,height);
+			player_right[7]=daisysheet.crop(352,194,width,height);
 
-			player_back[0]=mariorun.crop(2,230,width,height);
-			player_back[1]=mariorun.crop(60,230,width,height);
-			player_back[2]=mariorun.crop(118,230,width,height);
-			player_back[3]=mariorun.crop(176,230,width,height);
-			player_back[4]=mariorun.crop(234,230,width,height);
-			player_back[5]=mariorun.crop(292,230,width,height);
-			player_back[6]=mariorun.crop(350,230,width,height);
-			player_back[7]=mariorun.crop(408,230,width,height);
+			player_back[0]=daisysheet.crop(2,290,width,height);
+			player_back[1]=daisysheet.crop(52,290,width,height);
+			player_back[2]=daisysheet.crop(102,290,width,height);
+			player_back[3]=daisysheet.crop(152,290,width,height);
+			player_back[4]=daisysheet.crop(202,290,width,height);
+			player_back[5]=daisysheet.crop(252,290,width,height);
+			player_back[6]=daisysheet.crop(302,290,width,height);
+			player_back[7]=daisysheet.crop(352,290,width,height);
 
 			//Mario Idle "Animations"
 			marioidle_back[0]=mariorun.crop(2,306,width,height);

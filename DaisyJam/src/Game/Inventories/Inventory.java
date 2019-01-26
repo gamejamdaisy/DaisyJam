@@ -1,7 +1,7 @@
 package Game.Inventories;
 
 import Game.Items.Item;
-import Game.SpellCast.FireBallSpell;
+
 import Resources.Images;
 import UI.UIInventory;
 import UI.UIManager;
@@ -40,13 +40,7 @@ public class Inventory {
                 return;
             }
         }
-
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Q)){
-            active=!active;
-            handler.getWorld().getEntityManager().getPlayer().getSpellGUI().setActive(false);
-
-        }
-
+        
         if(!active){
             return;
         }
@@ -223,11 +217,6 @@ public class Inventory {
                 return;
             }
         }
-        if(item.getId()==2){
-            handler.getWorld().getEntityManager().getPlayer().getSpellGUI().addSpell(new FireBallSpell(handler));
-        }
-        inventoryItems.add(item);
-
     }
 
     //GET SET

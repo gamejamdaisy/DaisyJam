@@ -40,12 +40,6 @@ public class World3 extends BaseWorld{
 		entityManager.tick();
 		itemManager.tick();
 		
-		if (Player.luigisummon == true) {
-			entityManager.addEntity(new LuigiCompanion (handler, handler.getWorld().getEntityManager().getPlayer().getX()+30, 
-					handler.getWorld().getEntityManager().getPlayer().getY()+30));
-			Player.luigisummon = false;
-		}
-		
 		 countP++;
 	        if(countP>=30){
 	            countP=30;
