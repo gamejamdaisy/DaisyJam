@@ -17,10 +17,10 @@ public class World1 extends BaseWorld{
 		super(handler,path,player);
 		this.handler = handler;
 		caveWorld = new CaveWorld(handler,"res/Maps/caveMap.map",player);
+		 
 		
-		
-		entityManager.addEntity(new PeachNPC(handler, 300, 0, caveWorld));
-		entityManager.addEntity(new Door(handler, 100, 0, caveWorld));
+	    
+		//entityManager.addEntity(new Door(handler, 100, 0, caveWorld));
 		entityManager.addEntity(new LongBush(handler, 120, 200));
 		entityManager.addEntity(new LongBush(handler, 330, 200));
 		entityManager.addEntity(new Tree(handler, 80, 450));
@@ -66,6 +66,7 @@ public class World1 extends BaseWorld{
 		entityManager.addEntity(new LongBush(handler, 1180, 1025));
 		entityManager.addEntity(new LongBush(handler, 1450, 1025));
 		entityManager.addEntity(new Koopa(handler, 1300, 1450));
+		entityManager.addEntity(new Pipe(handler, 1470, 1360, caveWorld));
 		
 		
 		

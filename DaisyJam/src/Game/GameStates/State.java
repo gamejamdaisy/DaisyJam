@@ -21,7 +21,7 @@ public abstract class State {
     }
 
     //CLASS
-
+ 
     protected Handler handler;
 
     public State(Handler handler){

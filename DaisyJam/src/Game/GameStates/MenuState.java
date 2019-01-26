@@ -32,7 +32,7 @@ public class MenuState extends State {
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUimanager(uiManager);
 		
- 
+  
 
 		uiManager.addObjects(new UIImageButton(510, 224, 136, 28, Images.startButtons, new ClickListlener() {
 			@Override
@@ -40,7 +40,7 @@ public class MenuState extends State {
 				handler.getMouseManager().setUimanager(null);
 				handler.getGame().reStart();
 				yehFam = true;
-				State.setState(handler.getGame().gameState);
+				State.setState(handler.getGame().introState);
 				try {
 					audioFile = new File("res/music/Daisy_Yohoo.wav");
 					audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -58,14 +58,14 @@ public class MenuState extends State {
 					e.printStackTrace();
 				}
 			}
-		}));
+		})); 
 		
 		uiManager.addObjects(new UIImageButton(545, 312, 72, 22, Images.exitButtons, new ClickListlener() {
 			@Override
 			public void onClick() {
 				handler.getMouseManager().setUimanager(null);
 				handler.getGame().reStart();
-				State.setState(handler.getGame().gameState);
+				State.setState(handler.getGame().introState);
 			}
 		}));
 		

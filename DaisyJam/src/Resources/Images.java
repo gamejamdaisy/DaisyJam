@@ -98,6 +98,7 @@ public class Images {
 	public static BufferedImage[] FireBallDown;
 	public static BufferedImage loading;
 	public static BufferedImage spellGUI;
+	public static BufferedImage IntroScreen;
 
 	public static BufferedImage[] fountain;
 	public static BufferedImage[] drystatue;
@@ -105,6 +106,7 @@ public class Images {
 	
 	public static BufferedImage[] startButtons;
 	public static BufferedImage[] exitButtons;
+	public static BufferedImage pipe;
 
 
 	public Images() {
@@ -141,7 +143,7 @@ public class Images {
 		//Game Jam Added Sheets
 		SpriteSheet daisysheet = new SpriteSheet(Images.loadImage("/Sheets/Playable_Characters/DaisySheet.png"));
 		SpriteSheet menubuttonssheet = new SpriteSheet(Images.loadImage("/Buttons/MenuButtons.png"));
-		
+		SpriteSheet pipestuff = new SpriteSheet(Images.loadImage("/Sheets/BluePipe.png"));
 
 
 		blocks = new BufferedImage[256];
@@ -253,6 +255,7 @@ public class Images {
 
 			GameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOverState.png"));
 			Victory = ImageIO.read(getClass().getResourceAsStream("/Sheets/VictoryState.png"));
+			IntroScreen = ImageIO.read(getClass().getResourceAsStream("/Sheets/IntroCutscene.png"));
 			
 			
 			startButtons[0]= menubuttonssheet.crop(1,1,136,28);
@@ -262,6 +265,8 @@ public class Images {
 			exitButtons[0]= menubuttonssheet.crop(1,88,72,22);
 			exitButtons[1]= menubuttonssheet.crop(1,111,72,22);
 			exitButtons[2]= menubuttonssheet.crop(1,134,72,22);
+			
+	        pipe = pipestuff.crop(1, 1, 134,80);
 
 			//icon
 			icon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/MushroomIcon.png")));

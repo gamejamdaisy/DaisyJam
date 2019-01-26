@@ -24,7 +24,7 @@ public class LampPost extends StaticEntity {
 
     }
 
-	@Override
+	@Override 
 	public void tick() {
 		
 	}

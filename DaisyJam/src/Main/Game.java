@@ -2,6 +2,7 @@ package Main;
 
 import Game.GameStates.GameOverState;
 import Game.GameStates.GameState;
+import Game.GameStates.IntroState;
 import Game.GameStates.MenuState;
 import Game.GameStates.PauseState;
 import Game.GameStates.State;
@@ -42,6 +43,7 @@ public class Game implements Runnable {
     public State pauseState;
     public State gameOverState;
     public State victoryState;
+    public State introState;
 
 
     //Input
@@ -71,7 +73,7 @@ public class Game implements Runnable {
     public Game(String title, int width, int height){
 
         this.width = width;
-        this.height = height;
+        this.height = height; 
         this.title = title;
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
@@ -102,6 +104,7 @@ public class Game implements Runnable {
         pauseState = new PauseState(handler);
         gameOverState = new GameOverState(handler);
         victoryState = new VictoryState(handler);
+        introState = new IntroState(handler);
 
         State.setState(menuState);
 
@@ -223,7 +226,7 @@ public class Game implements Runnable {
         	MushroomClip.loop(Clip.LOOP_CONTINUOUSLY);
         }
         
-        if (handler.getWorld().getEntityManager().getPlayer().getCurrentWorld() == 2) {
+        if (handler.getWorld().getEntityManager().getPlayer().getCurrentWorld() == 2 || handler.getWorld().getEntityManager().getPlayer().getIsPipe1dead()) {
         	menuState.yehFam = false;
         	MushroomClip.stop();
         	BeachClip.start();

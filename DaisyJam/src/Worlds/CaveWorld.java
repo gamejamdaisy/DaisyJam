@@ -18,7 +18,7 @@ public class CaveWorld extends BaseWorld{
 		
 		world3 = new World3(handler,"res/Maps/map3.map",player);
 
-		entityManager.addEntity(new YoshiNPC(handler, 300, 0, world3));
+	//	entityManager.addEntity(new YoshiNPC(handler, 300, 0, world3));
 		entityManager.addEntity(new DoorW2(handler, 100, 0, world3));
 		entityManager.addEntity(new Rock(handler, 75, 370));
 		//entityManager.addEntity(new ShortDesertPillar(handler, 425, 0));

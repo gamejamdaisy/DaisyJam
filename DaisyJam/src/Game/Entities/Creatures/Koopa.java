@@ -33,7 +33,7 @@ public class Koopa extends CreatureBase  {
     public Koopa(Handler handler, float x, float y) {
         super(handler, x, y, 74, 54);
         bounds.x=22;
-        bounds.y=37;
+        bounds.y=37; 
         bounds.width=36;
         bounds.height=38;
         speed=2.0f;

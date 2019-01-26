@@ -24,7 +24,7 @@ public abstract class EntityBase {
     protected boolean beinghurt=false;
     protected int count = 0;
     protected boolean isenemy = false; 
-
+ 
     public boolean isIsenemy() {
 		return isenemy;
 	}

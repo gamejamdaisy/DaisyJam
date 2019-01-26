@@ -42,12 +42,22 @@ public class Player extends CreatureBase {
 
 	private File audioFile;
 	private AudioInputStream audioStream; 
-	private AudioFormat format;
+	private AudioFormat format; 
 	private DataLine.Info info;
 	private Clip audioClip;
  
 	private Boolean attacking=false;
+	protected Boolean isPipe1dead = false;
 	
+	public Boolean getIsPipe1dead() {
+		return isPipe1dead;
+	}
+
+	public void setIsPipe1dead(Boolean isPipe1dead) {
+		this.isPipe1dead = isPipe1dead;
+	}
+
+
 	public int World1 = 1;
 	public int Cave = 2;
 	public int World3 = 3;
@@ -59,10 +69,10 @@ public class Player extends CreatureBase {
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, 94, 48);
 
-		bounds.x=10;
-		bounds.y=37;
-		bounds.width=39;
-		bounds.height=39;
+		bounds.x=9;
+		bounds.y=45;
+		bounds.width=34;
+		bounds.height=50;
 		health=75;
 		this.attack=5;
 		this.speed = this.speed*(float)1.5;
@@ -87,7 +97,7 @@ public class Player extends CreatureBase {
 		getInput();
 		move();
 		handler.getGameCamera().centerOnEntity(this);
-
+		
 		// Attack
 		if(handler.getKeyManager().attbut) {
 			checkAttacks();
@@ -115,6 +125,7 @@ public class Player extends CreatureBase {
 			g.fillRect(47, 22, getHealth(), 13);
 
 		}
+		
 	}
 
 
@@ -147,7 +158,7 @@ public class Player extends CreatureBase {
 		}else{
 			return;
 		}
-
+ 
 		attackTimer = 0;
 
 		for(EntityBase e : handler.getWorld().getEntityManager().getEntities()){
@@ -158,6 +169,23 @@ public class Player extends CreatureBase {
 				System.out.println(e + " has " + e.getHealth() + " lives.");
 				return;
 			}
+		}
+		
+		try {
+			audioFile = new File("res/music/Daisy_Huh.wav");
+			audioStream = AudioSystem.getAudioInputStream(audioFile);
+			format = audioStream.getFormat();
+			info = new DataLine.Info(Clip.class, format);
+			audioClip = (Clip) AudioSystem.getLine(info);
+			audioClip.open(audioStream);
+			audioClip.loop(0);
+
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -289,6 +317,12 @@ public class Player extends CreatureBase {
 			}
 
 		}
+		
+		if (handler.getKeyManager().attbut) {
+
+		}
+
+
 
 		//Add one of each item Debug
 
