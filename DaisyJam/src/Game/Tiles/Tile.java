@@ -24,7 +24,7 @@ public class Tile {
     public static Tile twoflowerTile = new GrassTile(Images.blocks[5], 5);
     
     //Border Tiles brought down to just one
-    public static Tile peachcastletile = new CoastTile(6);
+    public static Tile peachcastletile = new BorderTile(6);
 
      //Bricks
     public static Tile bricktile = new BrickTile(Images.blocks[8],8);
