@@ -32,7 +32,7 @@ public class MenuState extends State {
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUimanager(uiManager);
 		
-
+ 
 
 		uiManager.addObjects(new UIImageButton(510, 224, 136, 28, Images.startButtons, new ClickListlener() {
 			@Override

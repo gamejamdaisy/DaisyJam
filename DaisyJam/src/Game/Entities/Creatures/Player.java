@@ -41,7 +41,7 @@ public class Player extends CreatureBase {
 	boolean NoItems = true;
 
 	private File audioFile;
-	private AudioInputStream audioStream;
+	private AudioInputStream audioStream; 
 	private AudioFormat format;
 	private DataLine.Info info;
 	private Clip audioClip;
@@ -102,25 +102,19 @@ public class Player extends CreatureBase {
 		g.drawImage(getCurrentAnimationFrame(animDown, animUp, animLeft, animRight, Images.player_front,Images.player_back,Images.player_left,Images.player_right), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 
 		g.setColor(Color.BLACK);
-		g.drawRect((int)(x-handler.getGameCamera().getxOffset()-1),(int)(y-handler.getGameCamera().getyOffset()-21),76,11);
+		g.drawImage(Images.HealthBar,15,15,107,28,null);
 		if(this.getHealth()>50){
 			g.setColor(Color.GREEN);
-			g.fillRect((int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()-20),getHealth(),10);
+			g.fillRect(46, 22, getHealth(), 13);
 
 		}else if(this.getHealth()>=15 && getHealth()<=50){
 			g.setColor(Color.YELLOW);
-			g.fillRect((int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()-20),getHealth(),10);
-
+			g.fillRect(47, 22, getHealth(), 13);
 		}else if(this.getHealth() < 15){
 			g.setColor(Color.RED);
-			g.fillRect((int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()-20),getHealth(),10);
+			g.fillRect(47, 22, getHealth(), 13);
 
 		}
-		g.setColor(Color.white);
-		g.drawString("Health: " + getHealth(),(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()-10));
-
-
-
 	}
 
 

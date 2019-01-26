@@ -22,7 +22,7 @@ public class EntityManager {
             if(a.getY() + a.getHeight() < b.getY() + b.getHeight())
                 return -1;
             return 1;
-        }
+        } 
     };
 
     public EntityManager(Handler handler, Player player){

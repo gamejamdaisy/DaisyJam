@@ -32,7 +32,7 @@ public class UIImageButton extends UIObject{
 		super(x, y, width, height);
 		this.images=images;
 		this.clicker=clicker;
-	}
+	} 
 
 
 	@Override

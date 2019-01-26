@@ -84,6 +84,7 @@ public class Images {
 	public static BufferedImage E;
 	public static BufferedImage EP;
 	public static BufferedImage Pause;
+	public static BufferedImage HealthBar;
 	public static BufferedImage GameOver;
 	public static BufferedImage Victory;
 	public static BufferedImage[] Resume;
@@ -248,6 +249,7 @@ public class Images {
 			BTitle[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitleP.png"));
 			Options[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Options.png"));
 			Options[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/OptionsP.png"));
+			HealthBar = ImageIO.read(getClass().getResourceAsStream("/Buttons/HealthBar.png"));
 
 			GameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOverState.png"));
 			Victory = ImageIO.read(getClass().getResourceAsStream("/Sheets/VictoryState.png"));
