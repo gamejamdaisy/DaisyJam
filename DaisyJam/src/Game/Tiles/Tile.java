@@ -62,6 +62,12 @@ public class Tile {
     public static Tile uTR = new CoastTile(Images.blocks[29], 34);
     public static Tile uBR = new CoastTile(Images.blocks[31], 35);
     public static Tile uBL = new CoastTile(Images.blocks[33], 36);
+    public static Tile Verticaltopbridge = new GrassTile(Images.blocks[65], 37);
+    public static Tile Verticalbotbridge = new GrassTile(Images.blocks[63], 38);
+    public static Tile HorizontalLftbridge = new GrassTile(Images.blocks[64], 39);
+    public static Tile HorizontalRgtbridge = new GrassTile(Images.blocks[66], 40);
+    public static Tile grassRock = new CoastTile(Images.blocks[67], 41);
+
 
 
 

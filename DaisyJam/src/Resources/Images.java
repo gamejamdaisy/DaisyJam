@@ -478,8 +478,13 @@ public class Images {
 			blocks[60] = islandsheet.crop(512, 0, Bwidth, Bheight); //rock in water
 
 			//Stairs
-			blocks[61] = stairs.crop(0, 0, Bwidth, Bheight);
-			blocks[62] = stairs.crop(64, 0, Bwidth, Bheight);
+			blocks[61] = stairs.crop(0, 0, Bwidth, Bheight);	//center
+			blocks[62] = stairs.crop(64, 0, Bwidth, Bheight);	//center
+			blocks[63] = stairs.crop(128, 0, Bwidth, Bheight); //bottom vertical
+			blocks[64] = stairs.crop(192, 0, Bwidth, Bheight); //left horizontal
+			blocks[65] = stairs.crop(0, 64, Bwidth, Bheight); //top vertical
+			blocks[66] = stairs.crop(64, 64, Bwidth, Bheight); // right horizontal
+			blocks[67] = ImageIO.read(getClass().getResourceAsStream("/Sheets/grassrock.png"));
 
 
 			//Fountain

@@ -74,7 +74,6 @@ public class BaseWorld {
 
         entityManager.getPlayer().getInventory().render(g);
 
-
     }
 
     public Tile getTile(int x, int y){

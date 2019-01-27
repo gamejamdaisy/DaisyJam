@@ -10,7 +10,7 @@ import Resources.Images;
 public class CoastTile extends Tile {
 
 	public CoastTile(BufferedImage texture,int id) {
-		super(Images.blocks[6], id);
+		super(texture, id);
 	}
 	
     @Override
